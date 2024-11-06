@@ -3,106 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professeur Parker - Chat</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-        .chat-container {
-            width: 400px;
-            margin: 50px auto;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .chat-header {
-            background: #4CAF50;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            font-size: 20px;
-            border-radius: 10px 10px 0 0;
-        }
-        .chat-box {
-            height: 300px;
-            overflow-y: scroll;
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        .chat-message {
-            margin: 10px 0;
-        }
-        .chat-message.user {
-            text-align: right;
-            color: #333;
-        }
-        .chat-message.bot {
-            text-align: left;
-            color: #4CAF50;
-        }
-        .message-input {
-            display: flex;
-            padding: 10px;
-        }
-        .message-input input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-        .message-input button {
-            padding: 10px 20px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+    <title>Kambe Blog</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="chat-container">
-        <div class="chat-header">
-            Professeur Parker
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Kambe Blog">
         </div>
-        <div id="chatBox" class="chat-box"></div>
-        <div class="message-input">
-            <input type="text" id="message" placeholder="Écrivez votre message...">
-            <button onclick="sendMessage()">Envoyer</button>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Articles</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="blog-posts">
+        <div class="post">
+            <h2>Article 1</h2>
+            <img src="images/article1.jpg" alt="Article 1">
+            <p>Introduction à l'article...</p>
+            <a href="#">Lire plus</a>
         </div>
-    </div>
 
-    <script>
-        // Fonction pour envoyer un message
-        function sendMessage() {
-            const message = document.getElementById("message").value;
-            if (message.trim() === "") return;
+        <div class="post">
+            <h2>Article 2</h2>
+            <img src="images/article2.jpg" alt="Article 2">
+            <p>Introduction à l'article...</p>
+            <a href="#">Lire plus</a>
+        </div>
+    </section>
 
-            // Ajouter le message de l'utilisateur à la boîte de chat
-            const chatBox = document.getElementById("chatBox");
-            const userMessage = `<div class="chat-message user">${message}</div>`;
-            chatBox.innerHTML += userMessage;
+    <section class="contact">
+        <h3>Contactez les administrateurs</h3>
+        <p>Rejoignez nos groupes sur WhatsApp et Telegram :</p>
+        <a href="https://wa.me/1234567890" target="_blank">WhatsApp</a> |
+        <a href="https://t.me/mon_groupe" target="_blank">Telegram</a>
+    </section>
 
-            // Envoyer la requête Ajax au serveur PHP
-            const xhr = new XMLHttpRequest();
-            xhr.open("GET", "chatbot.php?backup=123&msg=" + encodeURIComponent(message), true);
-            xhr.onload = function () {
-                if (this.status === 200) {
-                    // Ajouter la réponse du bot à la boîte de chat
-                    const botMessage = `<div class="chat-message bot">${this.responseText}</div>`;
-                    chatBox.innerHTML += botMessage;
-                    chatBox.scrollTop = chatBox.scrollHeight;
-                }
-            };
-            xhr.send();
+    <footer>
+        <p>&copy; 2024 Kambe Blog</p>
+    </footer>
 
-            // Effacer le champ de saisie
-            document.getElementById("message").value = "";
-        }
-    </script>
-
+    <script src="chatbot.js"></script>
 </body>
 </html>
