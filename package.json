@@ -7,10 +7,9 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "openai": "^3.0.0"
   },
-  "author": "",
-  "license": "ISC",
   "engines": {
     "node": "18.x"
   }
