@@ -1,14 +1,17 @@
 {
   "name": "professeur-parker",
   "version": "1.0.0",
-  "description": "Chatbot éducatif basé sur une API externe",
-  "main": "index.html",
+  "description": "Chatbot éducatif",
+  "main": "server.js",
   "scripts": {
-    "start": "php -S 0.0.0.0:$PORT -t ."
+    "start": "node server.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
-  "license": "MIT"
+  "author": "",
+  "license": "ISC"
 }
