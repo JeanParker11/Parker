@@ -3,41 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professeur Parker</title>
-    <link rel="stylesheet" href="style.css"> <!-- Lien vers le fichier CSS -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Icône du site -->
+    <title>Professeur Parker - Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .chat-container {
+            width: 400px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-header {
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        .chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .chat-message {
+            margin: 10px 0;
+        }
+        .chat-message.user {
+            text-align: right;
+            color: #333;
+        }
+        .chat-message.bot {
+            text-align: left;
+            color: #4CAF50;
+        }
+        .message-input {
+            display: flex;
+            padding: 10px;
+        }
+        .message-input input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .message-input button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <!-- Section Header -->
-    <header>
-        <div class="header-content">
-            <h1>Bienvenue sur Professeur Parker</h1>
-            <p>Le Chatbot éducatif pour toutes vos questions !</p>
-        </div>
-    </header>
 
-    <!-- Section Chat -->
-    <section class="chat-section">
-        <div class="chat-box">
-            <div class="chat-messages" id="chatMessages">
-                <!-- Les messages du chatbot et de l'utilisateur seront ici -->
-            </div>
-            <div class="chat-input">
-                <input type="text" id="userMessage" placeholder="Tapez votre message..." />
-                <button id="sendMessage">Envoyer</button>
-            </div>
+    <div class="chat-container">
+        <div class="chat-header">
+            Professeur Parker
         </div>
-    </section>
-
-    <!-- Section Footer -->
-    <footer>
-        <p>Développé par Professeur Parker - Tous droits réservés</p>
-        <div class="contact-links">
-            <a href="https://wa.me/1234567890" target="_blank">Contactez-moi sur WhatsApp</a>
-            <a href="https://t.me/username" target="_blank">Contactez-moi sur Telegram</a>
+        <div id="chatBox" class="chat-box"></div>
+        <div class="message-input">
+            <input type="text" id="message" placeholder="Écrivez votre message...">
+            <button onclick="sendMessage()">Envoyer</button>
         </div>
-    </footer>
+    </div>
 
-    <script src="chatbot.js"></script> <!-- Lien vers le fichier JavaScript -->
+    <script>
+        // Fonction pour envoyer un message
+        function sendMessage() {
+            const message = document.getElementById("message").value;
+            if (message.trim() === "") return;
+
+            // Ajouter le message de l'utilisateur à la boîte de chat
+            const chatBox = document.getElementById("chatBox");
+            const userMessage = `<div class="chat-message user">${message}</div>`;
+            chatBox.innerHTML += userMessage;
+
+            // Envoyer la requête Ajax au serveur PHP
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "chatbot.php?backup=123&msg=" + encodeURIComponent(message), true);
+            xhr.onload = function () {
+                if (this.status === 200) {
+                    // Ajouter la réponse du bot à la boîte de chat
+                    const botMessage = `<div class="chat-message bot">${this.responseText}</div>`;
+                    chatBox.innerHTML += botMessage;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }
+            };
+            xhr.send();
+
+            // Effacer le champ de saisie
+            document.getElementById("message").value = "";
+        }
+    </script>
+
 </body>
 </html>
