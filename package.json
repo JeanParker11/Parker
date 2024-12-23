@@ -1,16 +1,28 @@
 {
   "name": "professeur-parker",
   "version": "1.0.0",
-  "description": "Chatbot éducatif",
-  "main": "server.js",
+  "private": true,
   "scripts": {
-    "start": "node server.js"
+    "dev": "vite",                    // Démarre le serveur de développement
+    "build": "vite build",           // Construit le site pour la production
+    "serve": "vite preview",         // Prévisualise le site après build
+    "start": "vite preview",         // Commande par défaut pour des services comme Heroku ou Render
+    "deploy": "vite build && gh-pages -d dist" // Déploie sur GitHub Pages (si nécessaire)
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "openai": "^3.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.14",
+    "gh-pages": "^5.0.0",             // Pour GitHub Pages si utilisé
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9"
   },
   "engines": {
-    "node": "18.x"
+    "node": ">=16.0.0"                // Version minimale de Node.js requise
   }
-}
+  }
