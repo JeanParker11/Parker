@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                   // Compile le code vers les dernières fonctionnalités JS
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // Bibliothèques utilisées
+    "allowJs": true,                      // Permet d'utiliser les fichiers JavaScript
+    "skipLibCheck": true,                 // Ignore la vérification des fichiers de déclaration
+    "esModuleInterop": true,              // Compatibilité avec les modules ES
+    "allowSyntheticDefaultImports": true, // Autorise les imports par défaut synthétiques
+    "strict": true,                       // Active le mode strict
+    "forceConsistentCasingInFileNames": true, // Vérifie la casse des fichiers
+    "module": "ESNext",                   // Utilise le système de module ESNext
+    "moduleResolution": "Node",          // Résolution des modules pour Node.js
+    "resolveJsonModule": true,           // Permet d'importer des fichiers JSON
+    "isolatedModules": true,             // Chaque fichier est traité comme un module individuel
+    "noEmit": true,                      // Empêche la sortie des fichiers compilés
+    "jsx": "react-jsx"                   // Supporte JSX avec la nouvelle transformation React
+  },
+  "include": ["src"],                     // Répertoire à inclure pour la compilation
+  "exclude": ["node_modules", "dist"]     // Répertoires à exclure
+  }
